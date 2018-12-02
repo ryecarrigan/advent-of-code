@@ -17,3 +17,12 @@ new File('input.txt').readLines().each { value ->
 def possible = twos + threes
 println "Possible IDs: ${possible.size()}"
 println "Checksum: ${twos.size() * threes.size()}"
+
+def ids = new File('ids.txt')
+if (!ids.createNewFile()) {
+    ids.text = ''
+}
+
+for (id in possible) {
+    ids << "${id}\n"
+}
