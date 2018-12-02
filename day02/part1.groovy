@@ -1,17 +1,19 @@
-def twoCount   = 0
-def threeCount = 0
+def twos   = []
+def threes = []
 
 new File('input.txt').readLines().each { value ->
     def charList = value.toList()
-    def twos = charList.findAll { letter -> value.count(letter) == 2}
-    if (!twos.empty) {
-        twoCount++
+    def twoChars = charList.findAll { letter -> value.count(letter) == 2}
+    if (!twoChars.empty) {
+        twos += value
     }
 
-    def threes = charList.findAll { letter -> value.count(letter) == 3}
-    if (!threes.empty) {
-        threeCount++
+    def threeChars = charList.findAll { letter -> value.count(letter) == 3}
+    if (!threeChars.empty) {
+        threes += value
     }
 }
 
-println "Checksum: ${twoCount * threeCount}"
+def possible = twos + threes
+println "Possible IDs: ${possible.size()}"
+println "Checksum: ${twos.size() * threes.size()}"
